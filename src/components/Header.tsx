@@ -39,8 +39,7 @@ const Header = () => {
     const fetchNavItems = async () => {
       try {
         const res = await fetch(
-          //"http://localhost:1337/api/global?populate[header][populate][0]=navItems"
-          "http://localhost:1337/api/global?populate[header_menu][populate][menu_items][populate]=childrens"
+          "https://strapi-demo-zp2l.onrender.com/api/global?populate[header_menu][populate][menu_items][populate]=childrens"
         );
         if (!res.ok) throw new Error("Failed to fetch data");
 
@@ -58,8 +57,8 @@ const Header = () => {
      const fetchLogo = async () => {
       try {
         const res = await fetch(
-          //"http://localhost:1337/api/global?populate[header][populate][0]=logo.image"
-          "http://localhost:1337/api/global?populate=header_menu.logo_header"
+          //"https://strapi-demo-zp2l.onrender.com/api/global?populate[header][populate][0]=logo.image"
+          "https://strapi-demo-zp2l.onrender.com/api/global?populate=header_menu.logo_header"
         );
         if (!res.ok) throw new Error("Failed to fetch data");
 
@@ -85,7 +84,7 @@ if (loading) return <div>Loading...</div>
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-             <img className='w-36' src={"http://localhost:1337" + logo} alt="logo-header"/>
+             <img className='w-36' src={"https://strapi-demo-zp2l.onrender.com" + logo} alt="logo-header"/>
           </div>
 
           {navItemsData.map((item) => (

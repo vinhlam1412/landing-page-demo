@@ -10,7 +10,7 @@ const Clients = () => {
         const fetchData = async () => {
           try {
             const res = await fetch(
-              "http://localhost:1337/api/global?populate[0]=block&populate[1]=block.clientLogo&populate[2]=block.clientLogo.image&populate[3]=block.testimonial"
+              "https://strapi-demo-zp2l.onrender.com/api/global?populate[0]=block&populate[1]=block.clientLogo&populate[2]=block.clientLogo.image&populate[3]=block.testimonial"
             );
             if (!res.ok) throw new Error("Failed to fetch data");
     
@@ -52,7 +52,7 @@ const Clients = () => {
             >
               <div className="bg-white/10 rounded-xl p-2 h-20 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                   <span className="text-foreground font-semibold text-sm opacity-70 group-hover:opacity-100 transition-opacity">
-                    <img className='mb-2' src={"http://localhost:1337" + client.image.formats.thumbnail.url}/>               
+                    <img className='mb-2' src={"https://strapi-demo-zp2l.onrender.com" + client.image.formats.thumbnail.url}/>               
                   </span>
                 </div>
               </div>

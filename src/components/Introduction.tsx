@@ -11,7 +11,7 @@ const Introduction = () => {
       const fetchData = async () => {
         try {
           const res = await fetch(
-            "http://localhost:1337/api/global?populate[0]=block&populate[1]=block.introduction&populate[2]=block.introduction.ctaDiscoverMore&populate[3]=block.introduction.virtualElement"
+            "https://strapi-demo-zp2l.onrender.com/api/global?populate[0]=block&populate[1]=block.introduction&populate[2]=block.introduction.ctaDiscoverMore&populate[3]=block.introduction.virtualElement"
           );
           if (!res.ok) throw new Error("Failed to fetch data");
   

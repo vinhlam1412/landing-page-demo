@@ -12,7 +12,7 @@ const Hero = () => {
     const fetchHeroBannerDatas = async () => {
       try {
         const res = await fetch(
-          "http://localhost:1337/api/global?populate[0]=heroBanner&populate[1]=heroBanner.primaryCTA&populate[2]=heroBanner.secondaryCTA&populate[3]=heroBanner.backgroundMedia&populate[4]=heroBanner.card"
+          "https://strapi-demo-zp2l.onrender.com/api/global?populate[0]=heroBanner&populate[1]=heroBanner.primaryCTA&populate[2]=heroBanner.secondaryCTA&populate[3]=heroBanner.backgroundMedia&populate[4]=heroBanner.card"
         );
         if (!res.ok) throw new Error("Failed to fetch data");
 
@@ -37,7 +37,7 @@ const Hero = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img 
-          src={"http://localhost:1337"+ heroBannerDatas.backgroundMedia.formats.large.url} 
+          src={"https://strapi-demo-zp2l.onrender.com"+ heroBannerDatas.backgroundMedia.formats.large.url} 
           alt="Digital technology background"
           className="w-full h-full object-cover"
         />

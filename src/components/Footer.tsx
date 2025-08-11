@@ -37,7 +37,7 @@ const Footer = () => {
         const fetchFootersData = async () => {
           try {
             const res = await fetch(
-              "http://localhost:1337/api/footer?populate[block1][populate]=logo_footer&populate[block2][populate]&populate[block3][populate]&populate[block4][populate]=social_icon"
+              "https://strapi-demo-zp2l.onrender.com/api/footer?populate[block1][populate]=logo_footer&populate[block2][populate]&populate[block3][populate]&populate[block4][populate]=social_icon"
             );
             if (!res.ok) throw new Error("Failed to fetch data");
     
@@ -69,7 +69,7 @@ const Footer = () => {
                {/* Company Info */}
               <div className="space-y-6">
               <div>
-                <img src={"http://localhost:1337" + footerDatas.block1[0].logo_footer.formats.thumbnail.url} alt="logo-footer"/>
+                <img src={"https://strapi-demo-zp2l.onrender.com" + footerDatas.block1[0].logo_footer.formats.thumbnail.url} alt="logo-footer"/>
               </div>             
             </div>
 

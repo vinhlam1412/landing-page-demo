@@ -11,7 +11,7 @@ const Services = () => {
         const fetchData = async () => {
           try {
             const res = await fetch(
-              "http://localhost:1337/api/global?populate[0]=block&populate[1]=block.feature&populate[2]=block.feature.icon&populate[3]=block.feature.featureItem&populate[4]=block.feature.ctaViewDetail"
+              "https://strapi-demo-zp2l.onrender.com/api/global?populate[0]=block&populate[1]=block.feature&populate[2]=block.feature.icon&populate[3]=block.feature.featureItem&populate[4]=block.feature.ctaViewDetail"
             );
             if (!res.ok) throw new Error("Failed to fetch data");
     
@@ -49,7 +49,7 @@ const Services = () => {
               className="glass-card hover-lift group cursor-pointer"
             >
                 <div className={`w-16 h-16 bg-gradient-to-br rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                <img src={"http://localhost:1337" + service.icon.formats.thumbnail.url}/>
+                <img src={"https://strapi-demo-zp2l.onrender.com" + service.icon.formats.thumbnail.url}/>
                </div>
 
               {/* Content */}

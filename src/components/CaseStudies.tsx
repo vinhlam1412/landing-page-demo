@@ -57,7 +57,7 @@ const CaseStudies = () => {
           const fetchData = async () => {
             try {
               const res = await fetch(
-                "http://localhost:1337/api/global?populate[0]=block&populate[1]=block.caseStudy&populate[2]=block.caseStudy.image&populate[3]=block.ctaRead"
+                "https://strapi-demo-zp2l.onrender.com/api/global?populate[0]=block&populate[1]=block.caseStudy&populate[2]=block.caseStudy.image&populate[3]=block.ctaRead"
               );
               if (!res.ok) throw new Error("Failed to fetch data");
       
@@ -98,7 +98,7 @@ const CaseStudies = () => {
               {/* Image */}
               <div className="relative overflow-hidden rounded-xl mb-6">
                 <img 
-                  src={"http://localhost:1337"+ caseStudy.image.formats.thumbnail.url} 
+                  src={"https://strapi-demo-zp2l.onrender.com"+ caseStudy.image.formats.thumbnail.url} 
                   alt={`${caseStudy.client} case study`}
                   className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
