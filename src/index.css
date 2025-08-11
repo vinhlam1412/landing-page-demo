@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CreativePoint Glassmorphism Design System 
+All colors MUST be HSL. Glass effects with backdrop-blur and transparency.
+*/
+
+@layer base {
+  :root {
+    /* Glassmorphism Background - 60% trắng */
+    --background: 0 0% 100%;
+    --foreground: 16 30% 25%;
+
+    /* Glass Cards - 60% trắng */
+    --card: 0 0% 100%;
+    --card-foreground: 16 30% 25%;
+    --glass: 0 0% 98%;
+    --glass-border: 16 20% 90%;
+
+    /* Popovers */
+    --popover: 220 40% 98%;
+    --popover-foreground: 220 90% 15%;
+
+    /* Primary Orange */
+    --primary: 16 88% 54%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glass: 16 60% 92%;
+
+    /* Secondary Glass Orange */
+    --secondary: 16 30% 92%;
+    --secondary-foreground: 16 90% 15%;
+
+    /* Muted Glass - White tones */
+    --muted: 0 0% 96%;
+    --muted-foreground: 16 20% 50%;
+
+    /* Accent Orange */
+    --accent: 16 70% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders & Inputs */
+    --border: 16 30% 85%;
+    --input: 16 30% 90%;
+    --ring: 16 88% 54%;
+
+    /* Glass Effects - White dominant */
+    --glass-shadow: 0 8px 32px hsla(16, 30%, 50%, 0.1);
+    --glass-border-gradient: linear-gradient(135deg, hsla(0, 0%, 100%, 0.6), hsla(16, 30%, 95%, 0.3));
+    
+    /* Gradients - 60% white, 40% orange */
+    --gradient-primary: linear-gradient(135deg, hsl(16, 88%, 54%) 60%, hsl(16, 88%, 54%) 40%);
+    --gradient-glass: linear-gradient(135deg, hsla(0, 0%, 100%, 0.95), hsla(16, 20%, 98%, 0.8));
+    --gradient-hero: linear-gradient(135deg, hsla(0, 0%, 100%, 0.4) 60%, hsla(16, 88%, 54%, 0.8) 40%);
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+}
+
+@layer components {
+  /* Glassmorphism utilities */
+  .glass {
+    @apply backdrop-blur-xl bg-white/60 border border-primary/20;
+    box-shadow: var(--glass-shadow);
+  }
+  
+  .glass-card {
+    @apply glass rounded-2xl p-6;
+    background: var(--gradient-glass);
+    border: 1px solid hsla(16, 88%, 54%, 0.2);
+  }
+  
+  .glass-nav {
+    @apply backdrop-blur-md bg-white/80 border-b border-white/20;
+  }
+  
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  /* Smooth animations */
+  .transition-glass {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .hover-lift {
+    @apply transition-transform duration-300 hover:scale-105 hover:-translate-y-1;
+  }
+  
+  .btn-glass {
+    @apply glass-card px-6 py-3 text-center font-medium rounded-xl transition-glass hover:bg-white/30 hover:shadow-lg;
+  }
+  
+  .btn-primary {
+    @apply gradient-primary text-white px-8 py-4 rounded-xl font-semibold transition-glass hover:shadow-xl hover:scale-105;
+  }
+}
