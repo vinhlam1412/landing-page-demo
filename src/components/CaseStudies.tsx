@@ -51,13 +51,14 @@ const CaseStudies = () => {
 
 
   const [data, setData] = useState<ICaseStudy>();  
-     const [loading, setLoading] = useState(true);
-      
+    const [loading, setLoading] = useState(true);
+    const baseUrl = import.meta.env.VITE_API_URL;
+
         useEffect(() => {
           const fetchData = async () => {
             try {
               const res = await fetch(
-                "https://strapi-demo-zp2l.onrender.com/api/global?populate[0]=block&populate[1]=block.caseStudy&populate[2]=block.caseStudy.image&populate[3]=block.ctaRead"
+                baseUrl + "/api/global?populate[0]=block&populate[1]=block.caseStudy&populate[2]=block.caseStudy.image&populate[3]=block.ctaRead"
               );
               if (!res.ok) throw new Error("Failed to fetch data");
       
@@ -98,7 +99,7 @@ const CaseStudies = () => {
               {/* Image */}
               <div className="relative overflow-hidden rounded-xl mb-6">
                 <img 
-                  src={"https://strapi-demo-zp2l.onrender.com"+ caseStudy.image.formats.thumbnail.url} 
+                  src={import.meta.env.VITE_API_URL + caseStudy.image.formats.thumbnail.url} 
                   alt={`${caseStudy.client} case study`}
                   className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                 />

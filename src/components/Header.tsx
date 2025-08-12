@@ -2,13 +2,12 @@ import { useState, useEffect } from 'react';
 import { ChevronDown, Globe, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { IMenuItem } from '@/types/navItem';
-
+ 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
-  
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -34,12 +33,13 @@ const Header = () => {
   const [logo, setLogo] = useState();
 
   const [loading, setLoading] = useState(true);
+  const baseUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchNavItems = async () => {
       try {
         const res = await fetch(
-          "https://strapi-demo-zp2l.onrender.com/api/global?populate[header_menu][populate][menu_items][populate]=childrens"
+          baseUrl + "/api/global?populate[header_menu][populate][menu_items][populate]=childrens"
         );
         if (!res.ok) throw new Error("Failed to fetch data");
 
@@ -57,8 +57,7 @@ const Header = () => {
      const fetchLogo = async () => {
       try {
         const res = await fetch(
-          //"https://strapi-demo-zp2l.onrender.com/api/global?populate[header][populate][0]=logo.image"
-          "https://strapi-demo-zp2l.onrender.com/api/global?populate=header_menu.logo_header"
+          baseUrl + "/api/global?populate=header_menu.logo_header"
         );
         if (!res.ok) throw new Error("Failed to fetch data");
 
@@ -84,7 +83,7 @@ if (loading) return <div>Loading...</div>
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-             <img className='w-36' src={"https://strapi-demo-zp2l.onrender.com" + logo} alt="logo-header"/>
+             <img className='w-36' src={import.meta.env.VITE_API_URL + logo} alt="logo-header"/>
           </div>
 
           {navItemsData.map((item) => (
@@ -146,7 +145,7 @@ if (loading) return <div>Loading...</div>
         </div>
 
         {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
+        {/* {isMobileMenuOpen && (
           <div className="lg:hidden glass-card mt-4 p-4">
             <nav className="space-y-4">
               <a href="#home" className="block text-foreground hover:text-primary transition-colors">
@@ -154,7 +153,7 @@ if (loading) return <div>Loading...</div>
               </a>
               <a href="#about" className="block text-foreground hover:text-primary transition-colors">
                 About
-              </a>
+              </a>            
               <div>
                 <p className="font-medium text-foreground mb-2">Services</p>
                 <div className="ml-4 space-y-2">
@@ -203,7 +202,7 @@ if (loading) return <div>Loading...</div>
               </div>
             </nav>
           </div>
-        )}
+        )} */}
       </div>
     </header>
   );

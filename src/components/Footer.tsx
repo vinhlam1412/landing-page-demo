@@ -8,21 +8,6 @@ const Footer = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const quickLinks = [
-    { name: 'About Us', href: '#about' },
-    { name: 'Careers', href: '#careers' },
-    { name: 'Site Map', href: '#sitemap' },
-    { name: 'Privacy Policy', href: '#privacy' },
-    { name: 'Terms of Use', href: '#terms' }
-  ];
-
-  const services = [
-    { name: 'Digital Marketing', href: '#digital' },
-    { name: 'Trade Solutions', href: '#trade' },
-    { name: 'Affiliate Programs', href: '#affiliate' },
-    { name: 'Martech Analytics', href: '#martech' }
-  ];
-
   const socialLinks = [
     { name: 'Facebook', icon: Facebook, href: 'https://www.facebook.com/Creativepointvietnam' },
     { name: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/company/point-creative-vn/mycompany/' },
@@ -30,14 +15,15 @@ const Footer = () => {
   ];
 
   const [footerDatas, setFootersData] = useState<IFooter>();
-    
+  
       const [loading, setLoading] = useState(true);
-    
+      const baseUrl = import.meta.env.VITE_API_URL;
+
       useEffect(() => {
         const fetchFootersData = async () => {
           try {
             const res = await fetch(
-              "https://strapi-demo-zp2l.onrender.com/api/footer?populate[block1][populate]=logo_footer&populate[block2][populate]&populate[block3][populate]&populate[block4][populate]=social_icon"
+              baseUrl+ "/api/footer?populate[block1][populate]=logo_footer&populate[block2][populate]&populate[block3][populate]&populate[block4][populate]=social_icon"
             );
             if (!res.ok) throw new Error("Failed to fetch data");
     
@@ -69,7 +55,7 @@ const Footer = () => {
                {/* Company Info */}
               <div className="space-y-6">
               <div>
-                <img src={"https://strapi-demo-zp2l.onrender.com" + footerDatas.block1[0].logo_footer.formats.thumbnail.url} alt="logo-footer"/>
+                <img src={import.meta.env.VITE_API_URL + footerDatas.block1[0].logo_footer.formats.thumbnail.url} alt="logo-footer"/>
               </div>             
             </div>
 

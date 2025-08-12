@@ -6,12 +6,13 @@ import { useEffect, useState } from 'react';
 const Introduction = () => {
   const [data, setData] = useState<IIntroduction>();  
   const [loading, setLoading] = useState(true);
-  
+  const baseUrl = import.meta.env.VITE_API_URL;
+
     useEffect(() => {
       const fetchData = async () => {
         try {
           const res = await fetch(
-            "https://strapi-demo-zp2l.onrender.com/api/global?populate[0]=block&populate[1]=block.introduction&populate[2]=block.introduction.ctaDiscoverMore&populate[3]=block.introduction.virtualElement"
+            baseUrl + "/api/global?populate[0]=block&populate[1]=block.introduction&populate[2]=block.introduction.ctaDiscoverMore&populate[3]=block.introduction.virtualElement"
           );
           if (!res.ok) throw new Error("Failed to fetch data");
   

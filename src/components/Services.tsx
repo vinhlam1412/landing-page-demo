@@ -1,32 +1,33 @@
 import { Button } from '@/components/ui/button';
 import { IService } from '@/types/IService';
-import { ArrowRight, Smartphone, TrendingUp, Users, BarChart3 } from 'lucide-react';
+import { ArrowRight} from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 const Services = () => {
    const [data, setData] = useState<IService>();  
-   const [loading, setLoading] = useState(true);
-    
-      useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const res = await fetch(
-              "https://strapi-demo-zp2l.onrender.com/api/global?populate[0]=block&populate[1]=block.feature&populate[2]=block.feature.icon&populate[3]=block.feature.featureItem&populate[4]=block.feature.ctaViewDetail"
-            );
-            if (!res.ok) throw new Error("Failed to fetch data");
-    
-            const json = await res.json();
-            const items = json?.data.block[1] ?? [];
-            setData(items);
-            console.log("service",items)
-          } catch (err) {
-            console.error("Error fetching servic", err);
-          } finally {
-            setLoading(false);
-          }
-        };  
-        fetchData();
-      }, []);
+   const [loading, setLoading] = useState(true);    
+  useEffect(() => {
+    const baseUrl = import.meta.env.VITE_API_URL;
+
+    const fetchData = async () => {
+      try {
+        const res = await fetch(
+          baseUrl + "/api/global?populate[0]=block&populate[1]=block.feature&populate[2]=block.feature.icon&populate[3]=block.feature.featureItem&populate[4]=block.feature.ctaViewDetail"
+        );
+        if (!res.ok) throw new Error("Failed to fetch data");
+
+        const json = await res.json();
+        const items = json?.data.block[1] ?? [];
+        setData(items);
+        console.log("service",items)
+      } catch (err) {
+        console.error("Error fetching servic", err);
+      } finally {
+        setLoading(false);
+      }
+    };  
+    fetchData();
+  }, []);
   if (loading) return <div>Loading...</div>
 
   return (
@@ -49,7 +50,7 @@ const Services = () => {
               className="glass-card hover-lift group cursor-pointer"
             >
                 <div className={`w-16 h-16 bg-gradient-to-br rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                <img src={"https://strapi-demo-zp2l.onrender.com" + service.icon.formats.thumbnail.url}/>
+                <img src={import.meta.env.VITE_API_URL + service.icon.formats.thumbnail.url}/>
                </div>
 
               {/* Content */}

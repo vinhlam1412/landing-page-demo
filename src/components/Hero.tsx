@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Play } from 'lucide-react';
-import heroBg from '@/assets/hero-bg.jpg';
 import { useEffect, useState } from 'react';
 import { IHeroBanner } from '@/types/heroBanner';
 
@@ -9,10 +8,12 @@ const Hero = () => {
   const [loading, setLoading] = useState(true);
       
   useEffect(() => {
+    const baseUrl = import.meta.env.VITE_API_URL;
+
     const fetchHeroBannerDatas = async () => {
       try {
         const res = await fetch(
-          "https://strapi-demo-zp2l.onrender.com/api/global?populate[0]=heroBanner&populate[1]=heroBanner.primaryCTA&populate[2]=heroBanner.secondaryCTA&populate[3]=heroBanner.backgroundMedia&populate[4]=heroBanner.card"
+          baseUrl + "/api/global?populate[0]=heroBanner&populate[1]=heroBanner.primaryCTA&populate[2]=heroBanner.secondaryCTA&populate[3]=heroBanner.backgroundMedia&populate[4]=heroBanner.card"
         );
         if (!res.ok) throw new Error("Failed to fetch data");
 
@@ -37,7 +38,7 @@ const Hero = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img 
-          src={"https://strapi-demo-zp2l.onrender.com"+ heroBannerDatas.backgroundMedia.formats.large.url} 
+          src={import.meta.env.VITE_API_URL + heroBannerDatas.backgroundMedia.formats.large.url} 
           alt="Digital technology background"
           className="w-full h-full object-cover"
         />
@@ -72,16 +73,6 @@ const Hero = () => {
               {heroBannerDatas.secondaryCTA.label}
             </Button>
           </div>
-
-          {/* Stats or Trust Indicators */}
-          {/* <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-            {heroBannerDatas.card.map((item) => (
-               <div className="glass-card text-center">
-              <h3 className="text-3xl font-bold text-black mb-2">{item.title}</h3>
-              <p className="text-black/80">{item.description}</p>
-            </div>
-            ))}         
-          </div> */}
         </div>
       </div>
      </>
